@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // alert("Задача 1");
+        // age = prompt("Age: ");
+        // if (age < 12) {
+        //     alert("You are child");
+        // }
+        // else if(age < 18 && age >= 12){
+        //     alert("You are teenager");
+        // }
+        // else if(age <= 60 && age >= 18){
+        //     alert("You are adult");
+        // }
+        // else if(age > 60){
+        //     alert("You are pensioner");
+        // }
+
+
+
+
+        //     alert("Задача 2");
+        //     let number = prompt('Enter the number from 0 to 9', 0);
+        // switch(number) {
+        //     case '0':
+        //     alert('0 is )');
+        //         break;
+        //     case '1':
+        //     alert('1 is !');
+        //         break;
+        //     case '2':
+        //     alert('2 is @');
+        //         break;
+        //     case '3':
+        //     alert('3 is #');
+        //         break;
+        //     case '4':
+        //     alert('4 is $');
+        //         break;
+        //     case '5':
+        //     alert('5 is %');
+        //         break;
+        //     case '6':
+        //     alert('6 is ^');
+        //         break;
+        //     case '7':
+        //     alert('7 is &');
+        //         break;
+        //     case '8':
+        //     alert('8 is *');
+        //         break;
+        //     case '9':
+        //     alert('9 is (');
+        //         break;
+        // }
+
+
+
+
+        // alert("Задача 3");
+        // let number = prompt('Enter the number from 100 to 999', 0);
+        // number = number + '';
+        // if (number[0] == number[1] || number[0] == number[2] || number[1] == number[2])
+        // {
+        //     alert('it contains the same numbers');
+        // }
+        // else{
+        //     alert('it NOT contains the same numbers');
+        // }
+
+
+
+
+        // alert("Задача 4");
+        // let year = prompt('Enter any year', 0);
+        // if (year%4 == 0 && year %100 !== 0)
+        // {
+        //     alert('Leap year');
+        // }
+        // else{
+        //     alert('NOT Leap Year');
+        // }
+
+
+
+
+
+
+        // alert("Задача 5");
+        //  let number = prompt('Enter the number from 10000 to 99999', 0);
+        // number = number + '';
+        // if (number === number.split('').reverse().join(''))
+        //     alert('Palindrome');
+        // else{
+        //     alert('NOT palindrome');
+        // }
+
+
+
+
+        // alert("Задача 6");
+        // let amount = prompt('Enter the amount of USD:', 0);
+        // let currency = prompt('EUR = 1, UAH = 2, AZN = 3', 0);
+        // switch(currency) {
+        //     case '1':
+        //     alert(amount*0.89 + 'EUR');
+        //         break;
+        //     case '2':
+        //     alert(amount*25.90 + 'UAH');
+        //         break;
+        //     case '3':
+        //     alert(amount*1.69 + 'AZN');
+        //         break;
+        // }
+
+
+
+
+
+        // alert("Задача 7");
+        // let amount = prompt('Enter the value of purchase:');
+        // if (amount >=200 && amount < 300)
+        // {
+        //     alert(amount/100*97 + '$ with 3% discount');
+        // }
+        // else if (amount >=300 && amount < 500)
+        // {
+        //      alert(amount/100*95 + '$ with 5% discount');
+        // }
+
+        // else if (amount >=500)
+        // {
+        //      alert(amount/100*93 + '$ with 7% discount');
+        // }
+
+
+
+
+
+
+
+
+        // alert("Задача 8");
+        // let length = prompt("Length of circle");
+        // let perimeter = prompt("Perimeter of square");
+        // let is = ((length / (2 * Math.PI)) <= (perimeter / 8));
+        // let result = is ? 'The circle can fit into the specified square' : 'The circle cannot fit into the specified square.';
+        // alert(result);
+
+
+
+        // alert("Задача 9");
+        // let capital = prompt('What is the capital of Ukraine? 1 - Kyiv 2 - Lviv 3 - Odesa');
+        // let currency = prompt('What is the currency of the USA? 1 - USD 2 - UAH 3 - EUR');
+        // let country = prompt('What is the most populated country? 1 - the USA 2 - Japan 3 - Ukraine');
+        // let score = 0;
+        // if (capital == 1) {
+        //     score += 2;
+        // }
+        // if (currency == 1) {
+        //     score += 2;
+        // }
+        // if (country == 3) {
+        //     score += 2;
+        //     alert('Your score is ' + score);
+        // }
+
+
+
+
+
+
+
+        alert("Задача 10");
+        let day = parseInt(prompt("Enter the day:"));
+        let month = parseInt(prompt("Enter the month (1-12):"));
+        let year = parseInt(prompt("Enter the year:"));
+
+        let daysInMonth;
+        if (month === 1 || month === 5 || month === 8 || month === 12) {
+            daysInMonth = 31;
+        } else if (month === 4 || month === 9 || month === 11) {
+            daysInMonth = 30;
+        } else if (month === 2) {
+            if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+                daysInMonth = 29;
+            } else {
+                daysInMonth = 28;
+            }
+        } else {
+            alert("Invalid month!");
+            daysInMonth = 0;
+        }
+
+        if (day < daysInMonth) {
+            day++;
+        } else {
+            day = 1;
+            if (month < 12) {
+                month++;
+            } else {
+                month = 1;
+                year++;
+            }
+        }
+
+        alert("Next date: " + day + "." + month + "." + year);
+
+
+
+    </script>
+</body>
+
+</html>
