@@ -30,8 +30,8 @@
         для всех div
         */
 
-        let divs = document.body.children;
-        let divCount = divs.length - 1;
+        let divs = document.getElementsByTagName("div");
+        let divCount = divs.length;
 
         document.addEventListener("keydown", function(e) {
             reset();
@@ -49,8 +49,8 @@
 
         function reset() {
             for (let i = 0; i < divCount; i++) {
-                    divs[i].style.border = "none";
-                }
+                divs[i].style.border = "none";
+            }
         }
     </script>
 </body>
