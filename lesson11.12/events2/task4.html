@@ -27,20 +27,21 @@
         */
         let div = document.querySelector("#element");
         let distance = 10;
-
+        
         document.addEventListener("keydown", function (e) {
+            let modDistance = e.shiftKey ? distance * 2 : distance;
             switch (e.code) {
                 case "ArrowLeft":
-                    moveLeft(div, distance);
+                    moveLeft(div, modDistance);
                     break;
                 case "ArrowRight":
-                    moveRight(div, distance);
+                    moveRight(div, modDistance);
                     break;
                 case "ArrowUp":
-                    moveUp(div, distance);
+                    moveUp(div, modDistance);
                     break;
                 case "ArrowDown":
-                    moveDown(div, distance);
+                    moveDown(div, modDistance);
                     break;
             }
         });
