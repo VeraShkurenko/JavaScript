@@ -30,26 +30,38 @@
         <div class="report-block">
             <p>месяц {{month}}</p>
             <p>сумма {{amount}}</p>
-            <ul></ul>
-                {{#users}} <!-- начало цикла для вывода массива users -->
-                <li>{{.}}</li> <!-- . - текущий элемент массива -->
-                {{/users}} <!-- конец цикла -->
+            <ul>
+                {{#users}}
+                <li>{{.}}</li>
+                {{/users}}
             </ul>
         </div>
     </template>
 
     <script src="mustache.min.js"></script>
     <script>
-        /*
-            Задание:
-            Перепишите данный код с использованием классов.
-            Создайте класс MonthReport со свойствами month, amount, users.
-            Добавьте в класс метод render, который будет визуализировать содержимое класса на странице.
-            Создайте массив экземпляров класса MonthReport со значениями, которые сейчас находятся в массиве source.
-            Пройдите циклом по массиву и на каждом экземпляре класса MonthReport вызовите метод render.
-        */
+        class MonthReport {
+            constructor(month, amount, users = []) {
+                this.month = month;
+                this.amount = amount;
+                this.users = users;
+            }
 
-        let source = [
+            render() {
+                const template = document.querySelector("#monthReport").innerHTML;
+                const output = document.querySelector("#output");
+
+                const html = Mustache.render(template, {
+                    month: this.month,
+                    amount: this.amount,
+                    users: this.users
+                });
+
+                output.insertAdjacentHTML("beforeend", html);
+            }
+        }
+
+        const source = [
             {
                 month: "Январь",
                 amount: 20,
@@ -66,15 +78,12 @@
             }
         ];
 
-        let template = document.querySelector("#monthReport").innerHTML;
-        let output = document.querySelector("#output");
+        const reports = source.map(
+            data => new MonthReport(data.month, data.amount, data.users || [])
+        );
 
-        document.querySelector("button").addEventListener("click", function () {
-            for (let i = 0; i < source.length; i++) {
-                const monthData = source[i];
-                let html = Mustache.render(template, monthData);
-                output.insertAdjacentHTML("beforeend", html);
-            }
+        document.querySelector("button").addEventListener("click", () => {
+            reports.forEach(report => report.render());
         });
     </script>
 </body>

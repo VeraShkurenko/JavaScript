@@ -39,6 +39,22 @@
                 author: "Секреты JavaScript ниндзя"
             }
         ];
+
+        let template = document.querySelector("#template").innerHTML;
+        
+        function createBook(book) {
+            let div = template.content.cloneNode(true);
+
+            div.querySelector("#titlePlaceholder").innerHTML = book.title;
+            div.querySelector("#authorPlaceholder").innerHTML = book.author;
+            return div;
+        }
+
+        books.forEach(book => {
+            let card = createBook(book);
+            document.body.append(card);
+        });
+
     </script>
 </body>
 
