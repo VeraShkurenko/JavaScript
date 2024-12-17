@@ -15,9 +15,13 @@
 
 <body>
     <p>Пользователи системы:</p>
-    <ul id="usersList">
-    </ul>
+    <ul id="usersList"></ul>
+    <template id="template">
+        <li>{{userInfo}}</li>
+    </template>
     
+    
+    <script src="mustache.min.js"></script>
     <script>
         /*
         Задание:
@@ -138,14 +142,14 @@
         ];
 
         let list = document.querySelector("#usersList");
+        let template = document.querySelector("#template").innerHTML;
         
-        for (let i = 0; i < users.length; i++) { 
+        for (let i = 0; i < users.length; i++) {
             const currentUser = users[i];
             let fullName = `${currentUser.name.first} ${currentUser.name.first}`;
             let liContent = `${fullName} (${currentUser.email})`;
-            let li = document.createElement("li");
-            li.textContent = liContent;
-            list.append(li);
+            let html = Mustache.render(template, {userInfo: liContent});
+            list.insertAdjacentHTML("beforeend", html);
         }
     </script>
 </body>
