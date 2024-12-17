@@ -27,6 +27,14 @@
 
     </table>
 
+    <template id="template">
+        <tr>
+            <th>{{month}}</th>
+            <th>{{amount}}</th>
+        </tr>
+    </template>
+
+    <script src="mustache.min.js"></script>
     <script>
         /*
         Задание:
@@ -65,6 +73,14 @@
                 amount: 100
             }
         ];
+
+        let table = document.querySelector("table");
+        let template = document.querySelector("#template").innerHTML;
+
+        for (let i = 0; i < source.length; i++) {
+            let html = Mustache.render(template, source[i]);
+            table.insertAdjacentHTML("beforeend", html);
+        }
         
     </script>
 </body>
