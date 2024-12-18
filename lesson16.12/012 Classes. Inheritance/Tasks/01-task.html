@@ -26,7 +26,7 @@
             }
         }
 
-        class Truck {
+        class Truck extends Car{
             weight;
             loadCargo(weight) {
                 if (weight > 1000) {
@@ -36,6 +36,10 @@
                     this.weight = weight;
                     console.log(`В грузовик загружено ${this.weight}кг.`);
                 }
+            }
+
+            move() {
+                console.log("Грузовик движется со скоростью 50 км/час");
             }
         }
 
