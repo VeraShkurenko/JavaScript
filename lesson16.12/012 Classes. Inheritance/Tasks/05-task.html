@@ -25,6 +25,26 @@
                 return Math.PI * Math.pow(this.radius, 2);
             }
         }
+
+        class Cone extends Circle {
+            constructor(radius, height) {
+                super(radius);
+                this.height = height;
+            }
+
+            getArea() {
+                let l = Math.hypot(this.height, this.radius);
+                return super.getArea() + Math.PI * this.radius * l;
+            }
+
+            getVolume() {
+                return super.getArea() * this.height / 3;
+            }
+        }
+
+        let cone = new Cone(12, 5.5);
+        console.log(`Об'єм конуса = ${cone.getVolume()}`);
+        console.log(`Площа повної поверхні = ${cone.getArea()}`);
     </script>
 </body>
 
