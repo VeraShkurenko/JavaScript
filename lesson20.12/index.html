@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index.html</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: blanchedalmond;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .form-container button {
+            grid-column: span 2;
+            justify-self: center;
+            width: 100%;
+            height: 30px;
+        }
+
+        .form-container input {
+            margin: 5px 0 5px 5px;
+            padding: 5px 0 5px 5px; 
+        }
+
+        .rectangle-container {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .rectangle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-size: 14px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .rectangle p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Create new color</h1>
+    <div class="form-container">
+        <label for="width">Ширина:</label>
+        <input type="number" id="width" min="1">
+        <label for="height">Высота:</label>
+        <input type="number" id="height" min="1">
+        <label for="colorName">Название цвета:</label>
+        <input type="text" id="colorName">
+        <label for="color">Цвет (RGB):</label>
+        <input type="text" id="color" placeholder="Пример: 255, 255, 255">
+        <button id="saveButton">Save</button>
+    </div>
+
+    <h3>All colors</h3>
+
+    <div class="rectangle-container" id="rectangleContainer"></div>
+
+    <script>
+        class Rectangle {
+            constructor(width, height, color, colorName) {
+                this.width = width;
+                this.height = height;
+                this.color = color;
+                this.colorName = colorName.toUpperCase();
+            }
+
+            render(container) {
+                const rectangleElement = document.createElement('div');
+                
+                rectangleElement.style.width = `${this.width}px`;
+                rectangleElement.style.height = `${this.height}px`;
+                rectangleElement.style.backgroundColor = `rgb(${this.color})`;
+                
+                rectangleElement.classList.add('rectangle');
+
+                const colorNameText = document.createElement('p');
+                colorNameText.textContent = `${this.colorName}`;
+
+                const widthText = document.createElement('p');
+                widthText.textContent = `Ширина: ${this.width}px`;
+
+                const heightText = document.createElement('p');
+                heightText.textContent = `Высота: ${this.height}px`;
+
+                const colorText = document.createElement('p');
+                colorText.textContent = `Цвет: ${this.color}`;
+
+                rectangleElement.appendChild(colorNameText);
+                rectangleElement.appendChild(widthText);
+                rectangleElement.appendChild(heightText);
+                rectangleElement.appendChild(colorText);
+
+                container.appendChild(rectangleElement);
+            }
+        }
+
+        document.getElementById('saveButton').addEventListener('click', () => {
+
+            const width = parseInt(document.getElementById('width').value);
+            const height = parseInt(document.getElementById('height').value);
+            const color = document.getElementById('color').value;
+            const colorName = document.getElementById('colorName').value;
+
+            if (!width || !height || !color.match(/^(\d{1,3}), (\d{1,3}), (\d{1,3})$/)) {
+                alert('Не корректные данные');
+                return;
+            }
+
+            const rgbArray = color.split(',').map(Number);
+            if (rgbArray.some(val => val < 0 || val > 255)) {
+                alert('от 0 до 255');
+                return;
+            }
+
+            const rectangleContainer = document.getElementById('rectangleContainer');
+            const rectangle = new Rectangle(width, height, color, colorName);
+
+            rectangle.render(rectangleContainer);
+
+            console.log(JSON.stringify(rectangle));
+        });
+    </script>
+</body>
+
+</html>
