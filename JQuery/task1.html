@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+    }
+    img {
+      position: absolute;
+      width: 100px;
+      height: auto;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <img id="animal" src="img.png" alt="Животное">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).mousemove(function(event) {
+      const $animal = $('#animal');
+      const animalWidth = $animal.width();
+      const animalHeight = $animal.height();
+
+      let newLeft = event.pageX - animalWidth / 2;
+      let newTop = event.pageY - animalHeight / 2;
+
+      newLeft = Math.max(0, Math.min($(window).width() - animalWidth, newLeft));
+      newTop = Math.max(0, Math.min($(window).height() - animalHeight, newTop));
+
+      $animal.css({
+        left: newLeft,
+        top: newTop
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #fff5e6;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+    .buttons {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .buttons span {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+    .buttons button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid grey;
+    }
+    .buttons button.red { background-color: #ff6b6b; }
+    .buttons button.green { background-color: #4caf50; }
+    .buttons button.orange { background-color: #ff9800; }
+    .buttons button.yellow { background-color: #ffeb3b; color: #333; }
+    .buttons button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    .fruits {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 15px;
+    }
+    .fruit {
+      border: 1px solid grey;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .fruit.red { background-color: #ff6b6b; }
+    .fruit.green { background-color: #4caf50; }
+    .fruit.orange { background-color: #ff9800; }
+    .fruit.yellow { background-color: #ffeb3b; color: #333; }
+    .fruit.highlight {
+      box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.4);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="buttons">
+    <span>Select color:</span>
+    <button class="red">red</button>
+    <button class="green">green</button>
+    <button class="orange">orange</button>
+    <button class="yellow">yellow</button>
+  </div>
+  <hr>
+  <h2>Fruits:</h2>
+  <div class="fruits">
+    <div class="fruit red">apple</div>
+    <div class="fruit green">pear</div>
+    <div class="fruit orange">orange</div>
+    <div class="fruit yellow">pineapple</div>
+    <div class="fruit orange">mandarin</div>
+    <div class="fruit yellow">mango</div>
+    <div class="fruit green">avocado</div>
+    <div class="fruit red">red pepper</div>
+    <div class="fruit green">green pepper</div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $(".buttons button").on("click", function () {
+        const color = $(this).attr("class");
+        $(".fruit").removeClass("highlight");
+        $(`.fruit.${color}`).addClass("highlight");
+      });
+    });
+  </script>
+</body>
+</html>
